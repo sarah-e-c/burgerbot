@@ -3,6 +3,7 @@ from services.api import post_burger_count
 
 COMMANDS = {
     "!ping": fun.ping,
+    "!burgers": fun.burgers,
 }
 
 async def handle_message(message):
@@ -12,4 +13,5 @@ async def handle_message(message):
 
     count = message.content.lower().count("burger")
     if count > 0:
-        await post_burger_count(str(message.author), count)
+        total = await post_burger_count(str(message.author), count)
+        await message.channel.send(f"Total burgers: {total}")
