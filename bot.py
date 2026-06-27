@@ -1,5 +1,6 @@
 import discord
 import os
+from handler import handle_message
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -13,7 +14,6 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    if message.content == "!ping":
-        await message.channel.send("scam")
+    await handle_message(message)
 
 client.run(os.environ["DISCORD_TOKEN"])
